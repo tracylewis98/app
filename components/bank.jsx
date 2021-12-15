@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BankTable from "./banktable";
+
 import axios from "axios";
 import Joi from "joi-browser";
 
@@ -14,7 +14,7 @@ class Bank extends React.Component {
   componentDidMount(bankId) {
     console.log("componentDidMount");
     axios
-     .get("http://localhost:8080/bank/getAllBank")
+     .get(`http://localhost:8080/bank/getAllBank`)
       .then((res) => {
         console.log(res);
         this.setState({ bank: res.data });

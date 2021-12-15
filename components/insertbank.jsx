@@ -66,7 +66,7 @@ address: Joi.string().min(1).max(50).required(),
    // console.log(this.state.errors);
    // if (this.state.errors) return;
     axios
-      .post("http://localhost:8080/bank/insertBank", this.state.bank)
+      .post(`http://localhost:8080/bank/insertBank`, this.state.bank)
       .then((res) => {
         console.log(res.data);
         alert(
