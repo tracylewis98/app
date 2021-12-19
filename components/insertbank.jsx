@@ -5,13 +5,14 @@ import React, { Component } from "react";
 class InsertBank extends React.Component {
   state = {
     bank: {
-        bankId: " ",
         bankName: "",
         address: "",
-        
+        accountNo: "",
+        ifscNo:"",
+        pan:"",
       },
-    //errors: {},
-    //errMsg: "",
+    errors: {},
+    errMsg: "",
   };
   // define schema to validate input field values
   /*schema = {
@@ -66,24 +67,24 @@ address: Joi.string().min(1).max(50).required(),
    // console.log(this.state.errors);
    // if (this.state.errors) return;
     axios
-      .post(`http://localhost:8080/bank/insertBank`, this.state.bank)
+      .post(`http://localhost:8080/bank/bank/insertBank`, this.state.bank)
       .then((res) => {
         console.log(res.data);
         alert(
-          "Added Bank " + this.state.bank.bankId + " successfully!"
+          "Added Bank " + this.state.bank.bankName + " successfully!"
         );
         this.props.history.push("/bank");
       })
       .catch((err) => {
         console.log(err);
-        console.log(err.response.data.message);
-        this.setState({ errMsg: err.response.data.message });
+//console.log(err.response.data.message);
+       // this.setState({ errMsg: err.response.data.message });
       });
   };
 
   render() {
     // Object Destructuring
-    const { bankId, bankName, address} = this.state.bank;
+    const {bankName, address,accountNo,ifscNo,pan} = this.state.bank;
     const { errors, errMsg } = this.state;
     return (
       <div className="w-50 mx-auto ">
@@ -96,23 +97,7 @@ address: Joi.string().min(1).max(50).required(),
         <form
           onSubmit={this.handleSubmit}
           className="shadow p-3 mb-5 bg-body rounded mt-3"
-        >
-        <div className="mb-3">
-        <label htmlFor="bankId" className="form-label">
-         Bank Id
-        </label>
-        <input
-          type="number"
-          className="form-control"
-          id="bankId"
-          aria-describedby="emailHelp"
-          value={bankId}
-          name="bankId"
-          onChange={this.handleChange}
-        />
-        {errors && <small>{errors.bankId}</small>}
-      </div>
-            
+        >   
           
       <div className="mb-3">
       <label htmlFor="bankName" className="form-label">
@@ -146,9 +131,54 @@ address: Joi.string().min(1).max(50).required(),
     />
     {errors && <small>{errors.address}</small>}
   </div>
-            
-    
-          
+  <div className="mb-3">
+    <label htmlFor="accountNo" className="form-label">
+     Account Number
+    </label>
+    <input
+      type="text"
+      className="form-control"
+      id="accountNo"
+      aria-describedby="emailHelp"
+      value={accountNo}
+      name="accountNo"
+      onChange={this.handleChange}
+    />
+    {errors && <small>{errors.accountNo}</small>}
+  </div>
+
+  <div className="mb-3">
+    <label htmlFor="ifscNo" className="form-label">
+     IFSC Number
+    </label>
+    <input
+      type="text"
+      className="form-control"
+      id="ifscNo"
+      aria-describedby="emailHelp"
+      value={ifscNo}
+      name="ifscNo"
+      onChange={this.handleChange}
+    />
+    {errors && <small>{errors.ifscNo}</small>}
+  </div>
+
+ 
+  <div className="mb-3">
+    <label htmlFor="accountNo" className="form-label">
+    PAN
+    </label>
+    <input
+      type="text"
+      className="form-control"
+      id="pan"
+      aria-describedby="emailHelp"
+      value={pan}
+      name="pan"
+      onChange={this.handleChange}
+    />
+    {errors && <small>{errors.pan}</small>}
+  </div>
           
           <div className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-primary">

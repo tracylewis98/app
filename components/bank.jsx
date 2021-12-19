@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
 import axios from "axios";
 import Joi from "joi-browser";
-
 import { Link } from "react-router-dom";
 
 class Bank extends React.Component {
@@ -59,14 +57,19 @@ class Bank extends React.Component {
         .      <th>bankId</th>
               <th>bankName</th>
               <th>address</th>
+              <th>accountNo</th>
+              <th>ifscNo</th>
+              <th>pan</th>
             </tr>
           </thead>
           <tbody>
             {this.state.bank.map((d)=>
                <tr key={d.bankId}>
-                <td>{d.bankId}</td>
                 <td>{d.bankName}</td>
                 <td>{d.address}</td>
+                <td>{d.accountNo}</td>
+                <td>{d.ifscNo}</td>
+                <td>{d.pan}</td>
                 <td>
                   <Link to={`/bank/updateBank/${d.bankId}`}
                     className="btn btn-primary"
